@@ -3,17 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projeto Apostas</title>
-    <link rel="icon" type="image/x-icon" href="iconeBrasil.ico" />
+    <title>IT Academy 2024</title>
+    <link rel="icon" type="image/x-icon" href="roulette-icon.png" />
   </head>
+
   <body>
     <h2 id="mainHeader">Por favor, escolha uma opção!</h2>
 
-    <button type="button" id="btIniciar" onclick="insereLinha();">
+    <button type="button" id="btIniciar" onclick="start();">
       Iniciar sorteio
     </button>
 
-    <button type="button" id="btRemove" onclick="removeLinha();">REMOVE</button>
+    <button type="button" id="btFazAposta" onclick="makeBet();">
+      Fazer uma aposta
+    </button>
+
+    <!--Espaco para nome-->
+    <input type="text" id="inNome" name="inNome" maxlength="100" />Insira seu
+    nome<br />
+
+    <!--Espaco para CPF-->
+    <input
+      type="number"
+      id="inCPF"
+      name="inCPF"
+      maxlength="11"
+      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+    />Insira seu CPF<br />
+
+    <!--Espaco para Apostas-->
+    <input type="number" id="inBet" name="inBet" min="1" max="99" />Insira uma
+    aposta de 1 a 50<br />
+
+    <button type="button" id="btListarApostas" onclick="listBets();">
+      Listar apostas feitas nesta rodada
+    </button>
+
+    <button type="button" id="btFazSorteio" onclick="roll();">
+      Realizar o sorteio
+    </button>
 
     <script src="script.js"></script>
   </body>
