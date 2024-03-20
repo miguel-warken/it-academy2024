@@ -176,7 +176,7 @@ public class Sorteio {
             });
 
             // 4.2 Imprimi a lista ordenada
-            for (Aposta aposta : apostas) {
+            for (Aposta aposta : getApostasVencedoras()) {
                 System.out.println("\n"+ aposta.getPessoaDona().getNome() + " ganhou com a aposta [" + aposta.getId() + "]!");
             }
         }
