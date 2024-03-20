@@ -83,7 +83,7 @@ public class Sorteio {
         }
 
         // Serão realizadas 25 rodadas no total
-        while (this.rodadas <= 25) {
+        while (this.rodadas < 25) {
 
             int numeroAdicionado = r.nextInt(50) + 1;
 
