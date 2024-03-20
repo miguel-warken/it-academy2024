@@ -12,7 +12,7 @@ public class Pessoa {
         apostas.add(aposta);
     }
 
-    public void adicionaApostaPessoaExistente(Aposta aposta) {
+    public void adicionaAposta(Aposta aposta) {
         apostas.add(aposta);
     }
 
