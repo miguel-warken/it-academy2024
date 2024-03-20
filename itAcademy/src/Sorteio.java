@@ -34,7 +34,6 @@ public class Sorteio {
         }
 
         // Inicialização de estruturas
-        int rodadas = 1;
         boolean houveVencedora = false;
         Random r = new Random(System.currentTimeMillis()); // Número realmente aleatório
 
@@ -76,7 +75,7 @@ public class Sorteio {
 
         // Se houverem vencedores na primeira rodada
         if (houveVencedora) {
-            mostraResultados(rodadas);
+            mostraResultados();
             return;
         } else {
             System.out.println("Não houveram apostas vencedoras com o conjunto sorteado " + getnumerosSorteados()
@@ -117,10 +116,10 @@ public class Sorteio {
             }
             this.rodadas++;
         }
-        mostraResultados(rodadas);
+        mostraResultados();
     }
 
-    private void mostraResultados(int rodadas) {
+    private void mostraResultados() {
 
         // 1. Lista de numeros sorteados
         System.out.println("-> Números sorteados: " + getnumerosSorteados());
