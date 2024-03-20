@@ -1,6 +1,6 @@
 # it-academy2024
 
-<h3>Olá, tudo bem? Esta é minha implementação do enunciado proposto pelo programa IT Academy 2024.<\h3>
+<h3>Olá, tudo bem? Esta é minha implementação do enunciado proposto pelo programa IT Academy 2024.
 <h4>Feito integralmente por: Miguel de Oliveira Farias Warken</h4>
 
 <div>
