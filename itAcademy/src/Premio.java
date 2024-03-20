@@ -24,18 +24,19 @@ public class Premio {
         System.out.println("\nNo momento, estamos " + jogo.getEstadoJogo() + "\n");
 
         // Se houve alguma aposta vencedora
-        try{
+        try {
             if (!getJogo().getSorteio().getApostasVencedoras().isEmpty()) {
                 criaPremio();
-                System.out.println("\n-> Premio criado! Cheque 'premiacao.txt'!");
+                System.out.println("-> Premio criado! Cheque 'premiacao.txt'!\n");
+            } else {
+                System.out.println("-> Não houveram quaisquer apostas vencedoras na última partida!");
             }
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("-> Não houveram quaisquer apostas vencedoras na última partida!");
         }
 
         // Definir estado do jogo
         jogo.setEstadoJogo(EstadoJogo.APOSTANDO);
-        System.out.println("\nNo momento, estamos " + jogo.getEstadoJogo() + "\n");
     }
 
     private void criaPremio() {
@@ -46,8 +47,8 @@ public class Premio {
         // Instanciado aqui para não gerar o mesmo código para todas os vencedores.
         Random r = new Random(System.currentTimeMillis());
 
-
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("premiacao.txt"), StandardCharsets.UTF_8))) {
+        try (BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream("premiacao.txt"), StandardCharsets.UTF_8))) {
 
             writer.write("==================================================\n");
             writer.write("PARABÉNS! OS PREMIADOS DA ÚLTIMA PARTIDA FORAM:\n\n");
@@ -81,7 +82,7 @@ public class Premio {
 
         // Montar o código
         for (int i = 0; i < 12; i++) {
-            char escolhido = caracteresPossiveis.charAt(r.nextInt(caracteresPossiveis.length())); 
+            char escolhido = caracteresPossiveis.charAt(r.nextInt(caracteresPossiveis.length()));
             sb.append(escolhido);
         }
 
@@ -96,17 +97,17 @@ public class Premio {
         ArrayList<String> nomesVencedores = new ArrayList<>();
 
         // Se alguma aposta venceu (nao esta vazio)
-            Collections.sort(getJogo().getSorteio().getApostasVencedoras(), new Comparator<Aposta>() {
-                @Override
-                public int compare(Aposta a1, Aposta a2) {
-                    return a1.getPessoaDona().getNome().compareTo(a2.getPessoaDona().getNome());
-                }
-            });
-
-            // Cria lista ordenada
-            for (Aposta aposta : getJogo().getSorteio().getApostasVencedoras()) {
-                nomesVencedores.add(aposta.getPessoaDona().getNome());
+        Collections.sort(getJogo().getSorteio().getApostasVencedoras(), new Comparator<Aposta>() {
+            @Override
+            public int compare(Aposta a1, Aposta a2) {
+                return a1.getPessoaDona().getNome().compareTo(a2.getPessoaDona().getNome());
             }
+        });
+
+        // Cria lista ordenada
+        for (Aposta aposta : getJogo().getSorteio().getApostasVencedoras()) {
+            nomesVencedores.add(aposta.getPessoaDona().getNome());
+        }
         return nomesVencedores;
     }
 

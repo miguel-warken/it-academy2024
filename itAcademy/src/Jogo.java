@@ -16,34 +16,47 @@ public class Jogo {
     }
 
     public void menuInicial() {
-        
-        System.out.println(menuDeOpcoes());
 
         Scanner sc = new Scanner(System.in);
-        int opcao = sc.nextInt();
+        int opcao;
 
-        switch (opcao) {
-            case 1:
-                registraApostas();
-                break;
+        while (true) {
+            System.out.println(menuDeOpcoes());
 
-            case 2:
-                listaTodasApostas();
-                break;
+            try {
+                opcao = Integer.parseInt(sc.next());
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, insira uma opção válida!\n");
+                continue;
+            }
 
-            case 3:
-                this.sorteio = new Sorteio(getApostas(), this);
-                break;
+            switch (opcao) {
+                case 0:
+                    System.out.println("Saindo do jogo!");
+                    sc.close();
+                    return;
 
-            case 4:
-                new Premio(this);
-                break;
+                case 1:
+                    registraApostas();
+                    break;
 
-            default:
-                System.out.println("Saindo do jogo!");
-                return;
+                case 2:
+                    listaTodasApostas();
+                    break;
+
+                case 3:
+                    this.sorteio = new Sorteio(getApostas(), this);
+                    break;
+
+                case 4:
+                    new Premio(this);
+                    break;
+
+                default:
+                    System.out.println("Escolha uma opção válida!");
+                    break;
+            }
         }
-        menuInicial();
     }
 
     private void registraApostas() {
@@ -102,10 +115,25 @@ public class Jogo {
         System.out.println("Por favor, escolha uma opcao!\n1) Escolher os numeros\n2) Surpresinha\n");
         mostraNumeros();
 
-        String opcao = sc.next();
+        int opcao = 0;
+
+        // Checar o que foi inserido
+        while (opcao != 1 && opcao != 2) {
+
+            entrada = sc.next();
+
+            try {
+                opcao = Integer.parseInt(entrada);
+                if (opcao != 1 && opcao != 0) {
+                    System.out.println("Por favor, insira uma opção válida!\nOpção: ");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, insira uma opção válida!\nOpção: ");
+            }
+        }
 
         // Se quiser escolher
-        if (opcao.equals("1")) {
+        if (opcao == 1) {
             System.out.println("Agora, escolha 5 números, um de cada vez!");
 
             // 5 numeros
@@ -118,6 +146,7 @@ public class Jogo {
                     numEscolhido = Integer.parseInt(entrada);
                 } catch (NumberFormatException e) {
                     System.out.println("Por favor, insira um número inteiro válido.");
+                    continue;
                 }
 
                 if ((numEscolhido >= 1 && numEscolhido <= 50) && (!numerosAposta.contains(numEscolhido))) {
@@ -128,7 +157,7 @@ public class Jogo {
                 }
             }
             // Função surpresinha
-        } else if (opcao.equals("2")) {
+        } else if (opcao == 2) {
 
             System.out.println("Números escolhidos: ");
             Random r = new Random(System.currentTimeMillis());
@@ -178,17 +207,16 @@ public class Jogo {
         return null;
     }
 
-    private String menuDeOpcoes(){
-        return 
-        "==============================\n" +
-        "No momento, estamos " + getEstadoJogo() +
-        "\n==============================\n" +
-        "Por favor, escolha uma opcão:\n1) Registrar Aposta\n" +
+    private String menuDeOpcoes() {
+        return "==============================\n" +
+                "No momento, estamos " + getEstadoJogo() +
+                "\n==============================\n" +
+                "Por favor, escolha uma opcão:\n1) Registrar Aposta\n" +
                 "2) Listar Apostas do Jogo atual\n" +
                 "3) Iniciar sorteio com apostas existentes\n" +
                 "4) Premiar todas as apostas vencedoras até agora\n" +
                 "0) Sair!\n" +
-        "==============================\n";
+                "==============================\n";
     }
 
     public Sorteio getSorteio() {
@@ -210,6 +238,5 @@ public class Jogo {
     public ArrayList<Pessoa> getPessoas() {
         return pessoas;
     }
-
 
 }

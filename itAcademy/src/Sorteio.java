@@ -28,7 +28,7 @@ public class Sorteio {
     private void realizaSorteio() {
 
         // Checa para ver se existem apostas
-        if(getApostas().isEmpty()){
+        if (getApostas().isEmpty()) {
             System.out.println("Não foram feitas quaisquer apostas nesta partida ainda!");
             return;
         }
@@ -43,7 +43,8 @@ public class Sorteio {
 
         // 1. Sortear números
         for (int i = 1; i <= 5; i++) {
-            this.numerosSorteados.add(r.nextInt(50) + 1);
+            // this.numerosSorteados.add(r.nextInt(50) + 1);
+            this.numerosSorteados.add(i);
         }
 
         // 2. Definir estado do Jogo
@@ -78,7 +79,7 @@ public class Sorteio {
             mostraResultados();
             return;
         } else {
-            System.out.println("Não houveram apostas vencedoras com o conjunto sorteado " + getnumerosSorteados()
+            System.out.println("-> Não houveram apostas vencedoras com o conjunto sorteado " + getnumerosSorteados()
                     + ", iniciando rodadas bônus!\n");
         }
 
@@ -132,7 +133,7 @@ public class Sorteio {
             System.out.println("\n-> Nenhuma aposta venceu nesta partida...\n");
         } else {
             System.out.println("\n-> Numero de apostas vencedoras: " + getApostasVencedoras().size());
-             // 4. Lista de apostas vencedoras:
+            // 4. Lista de apostas vencedoras:
             ordenaVencedorasEImprime();
         }
 
@@ -142,27 +143,27 @@ public class Sorteio {
         System.out.println("\n-> Inicializando novo jogo! Todas apostas zeradas!");
     }
 
-    private void numerosMaisEscolhidos(){
+    private void numerosMaisEscolhidos() {
 
         List<Integer> todosNumeros = new ArrayList<>();
-        Map<Integer, Integer> freqNumeros = new HashMap<>(); 
+        Map<Integer, Integer> freqNumeros = new HashMap<>();
 
         // Coletar todos os números de todas as Apostas feitas
-        for(Aposta aposta : getApostas()){  
+        for (Aposta aposta : getApostas()) {
             todosNumeros.addAll(aposta.getNumerosAposta());
         }
 
         // Colocar as frequências de cada número
-        for(Integer numero : todosNumeros){
+        for (Integer numero : todosNumeros) {
             freqNumeros.put(numero, freqNumeros.getOrDefault(numero, 0) + 1);
         }
 
-        System.out.println("-> Números e frequência que foram escolhidos: \n");
+        System.out.println("-> Números e frequência que foram escolhidos:\n");
 
         // Ordernar e imprimir
         freqNumeros.entrySet().stream()
-            .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed()) 
-            .forEach(numero -> System.out.println(numero.getKey() + " | " + numero.getValue()));
+                .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
+                .forEach(numero -> System.out.printf("%2d  |  %2d\n", numero.getKey(), numero.getValue()));
     }
 
     private void ordenaVencedorasEImprime() {
@@ -177,7 +178,8 @@ public class Sorteio {
 
             // 4.2 Imprimi a lista ordenada
             for (Aposta aposta : getApostasVencedoras()) {
-                System.out.println("\n"+ aposta.getPessoaDona().getNome() + " ganhou com a aposta [" + aposta.getId() + "]!");
+                System.out.println(
+                        "\n" + aposta.getPessoaDona().getNome() + " ganhou com a aposta [" + aposta.getId() + "]!");
             }
         }
         System.out.println();
