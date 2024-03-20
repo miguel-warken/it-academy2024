@@ -117,6 +117,7 @@ public class Sorteio {
             }
             this.rodadas++;
         }
+        mostraResultados(rodadas);
     }
 
     private void mostraResultados(int rodadas) {
@@ -157,7 +158,7 @@ public class Sorteio {
             freqNumeros.put(numero, freqNumeros.getOrDefault(numero, 0) + 1);
         }
 
-        System.out.println("Números e frequência que foram escolhidos: \n");
+        System.out.println("-> Números e frequência que foram escolhidos: \n");
 
         // Ordernar e imprimir
         freqNumeros.entrySet().stream()
