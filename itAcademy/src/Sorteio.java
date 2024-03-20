@@ -44,8 +44,7 @@ public class Sorteio {
 
         // 1. Sortear números
         for (int i = 1; i <= 5; i++) {
-            // this.numerosSorteados.add(r.nextInt(50) + 1);
-            this.numerosSorteados.add(i);
+            this.numerosSorteados.add(r.nextInt(50) + 1);
         }
 
         // 2. Definir estado do Jogo
