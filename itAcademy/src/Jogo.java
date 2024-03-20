@@ -163,7 +163,7 @@ public class Jogo {
         System.out.println("Nome:");
         String novoNome = sc.nextLine();
         while (!novoNome.matches("[a-zA-Z]+")) {
-            System.out.println("Por favor, insira apenas caracteres, sem numéricos ou acentuação!");
+            System.out.println("Por favor, insira apenas seu primeiro nome, sem numéricos ou acentuação!");
             novoNome = sc.nextLine();
         }
         return novoNome;
