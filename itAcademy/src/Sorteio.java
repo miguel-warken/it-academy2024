@@ -129,7 +129,7 @@ public class Sorteio {
 
         // 3. Quantidade de apostas vencedoras:
         if (getApostasVencedoras().isEmpty()) {
-            System.out.println("\n-> Nenhuma aposta venceu nesta partida...");
+            System.out.println("\n-> Nenhuma aposta venceu nesta partida...\n");
         } else {
             System.out.println("\n-> Numero de apostas vencedoras: " + getApostasVencedoras().size());
              // 4. Lista de apostas vencedoras:
